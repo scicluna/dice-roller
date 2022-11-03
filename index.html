@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Dice Roller!</title>
 </head>
 <body>
-    <script src="script.js"></script>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+    <script src="./assets/script.js"></script>
+    <h1>Roll the Dice!</h1>
+    
+    <form action="#">
+        size: <input type="number" name ="size" id="size"><br>
+        quantity: <input type="number" name ="quantity" id="quantity"><br>
+    </form>
+    <button onclick="diceRoll(document.getElementById('size').value,document.getElementById('quantity').value)">Roll!</button>
+    <br>
+    <input type="text" id="dice" readonly="readonly"/>
+    <input type="text" id="total" readonly="readonly"/>
 </body>
+
+<footer></footer>
 </html>
