@@ -31,6 +31,7 @@ console.log(diceResults)
 
 */
 
+
 //better way?
 function addArray(array){
     total = 0
@@ -54,3 +55,11 @@ function diceRoll(size,quantity){
 }
 
 
+
+
+function deString(string){
+    let usingSpread = string.split('d');
+    return usingSpread
+}
+
+diceRoll(deString('12d6')[0], deString('12d6')[1]);
