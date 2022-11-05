@@ -8,21 +8,16 @@
     <title>Dice Roller!</title>
 </head>
 <body>
-    <script>
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }
-    </script>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/script.js"> </script>
+
     <h1>Roll the Dice!</h1>
-    
+    <h2 type ="text" id="flag" value="1">1</h2>
     <form action="#">
-        size: <input type="number" name ="size" id="size"><br>
-        quantity: <input type="number" name ="quantity" id="quantity"><br>
+        roll: <input type="string" name ="roll" id="roll"><br>
     </form>
-    <button onclick="diceRoll(document.getElementById('size').value,document.getElementById('quantity').value)">Roll!</button>
+    <button onclick="dropOne(deString(document.getElementById('roll').value)[1],deString(document.getElementById('roll').value)[0],deString(document.getElementById('roll').value)[2])">Roll!</button>
     <br>
-    <input type="text" id="dice" readonly="readonly"/>
+    <input type="text" id="adice" readonly="readonly"/>
     <input type="text" id="total" readonly="readonly"/>
 </body>
 

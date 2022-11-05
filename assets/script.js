@@ -33,6 +33,7 @@ console.log(diceResults)
 
 
 //better way?
+
 function addArray(array){
     total = 0
     for (let i of array){
@@ -54,12 +55,86 @@ function diceRoll(size,quantity){
     document.getElementById("total").value = total;
 }
 
-
-
+function indexOfSmallest(a) {
+    var lowest = 0;
+    for (var i = 1; i < a.length; i++) {
+     if (a[i] < a[lowest]) lowest = i;
+    }
+    return lowest;
+   }
 
 function deString(string){
+    if (string.endsWith('!') ){
+        string = string.slice(0,-1);
+        flag = true
+    }
+
     let usingSpread = string.split('d');
     return usingSpread
 }
 
-diceRoll(deString('12d6')[0], deString('12d6')[1]);
+
+function dropOne(size,quantity,drop){
+    let dice =[]
+    console.log(flag)
+    if (flag === true){
+        for (let i=0; i<quantity; i++){
+            let die = Math.ceil(Math.random()*size)
+            dice.push(die)
+            if (die === size){
+                i--
+                console.log("Explode")
+            }
+        }
+        console.log(dice)
+    }
+        else {
+            for (let i=0; i<quantity; i++){
+                let die = Math.ceil(Math.random()*size)
+                dice.push(die)
+        }}
+
+    console.log(dice)
+    if (drop !== undefined){
+    var diceSort = dice.sort((a,b) => b-a).slice(0,dice.length-drop)
+    console.log(dice)
+    console.log(diceSort)
+    addArray(diceSort)
+    document.getElementById("adice").value = dice;
+    document.getElementById("total").value = total;
+    }
+    else {
+    var diceSort = dice.sort((a,b) => b-a)
+    console.log(dice)
+    console.log(diceSort)
+    addArray(diceSort)
+    document.getElementById("adice").value = dice;
+    document.getElementById("total").value = total;
+    }
+}
+
+
+
+function maxLoop (size, quantity){
+    let things = []
+    if (flag == true){
+    for (let i=0; i<quantity; i++){
+        let thing = Math.ceil(Math.random()*size)
+        things.push(thing)
+        if (thing === size){
+            i--
+            console.log("Explode")
+        }
+    }
+    console.log(things)
+}
+    else {
+        for (let i=0; i<quantity; i++){
+            let thing = Math.ceil(Math.random()*size)
+            things.push(thing)
+    }
+    console.log(things)
+}
+}
+
+var flag = false 
