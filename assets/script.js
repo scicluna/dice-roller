@@ -1,39 +1,4 @@
-/* One way to do it all
-
-//Variables that will be able to be filled out on our webpage later
-var diceSize = 6
-var diceQuantity = 3
-//Placeholder for the results and eventual display
-var diceResults = []
-
-//Function that rolls a single dice
-function rollDice(){
-    result = Math.ceil((Math.random())*diceSize)
-    return result
-}
-//Function that rolls multiple dice and totals them
-function rollAll(){
-    var total = 0
-for (i=0;i<diceQuantity;i++){
-    result = rollDice();
-    diceResults.push(result)
-}
-for (let i of diceResults){
-    total += i
-}
-console.log(total)
-return total
-}
-
-//Run
-rollAll();
-console.log(diceResults)
-
-*/
-
-
-//better way?
-
+//This function lets me total an array
 function addArray(array){
     total = 0
     for (let i of array){
@@ -42,57 +7,24 @@ function addArray(array){
     console.log(total)
     return total
 }
-
-function diceRoll(size,quantity){
-    let dice =[]
-    for (i=0;i<quantity;i++){
-        let die = Math.ceil(Math.random()*size)
-        dice.push(die)
-    }
-    console.log(dice)
-    addArray(dice);
-    document.getElementById("dice").value = dice;
-    document.getElementById("total").value = total;
-}
-
-function indexOfSmallest(a) {
-    var lowest = 0;
-    for (var i = 1; i < a.length; i++) {
-     if (a[i] < a[lowest]) lowest = i;
-    }
-    return lowest;
-   }
-
+//This function lets me turn a string into an array of characters. It also lets me switch on the "explodingflag" tag should the string end with an !
 function deString(string){
     if (string.endsWith('!') ){
         string = string.slice(0,-1);
-        flag = true
+        explodingflag = "on"
     }
-
     let usingSpread = string.split('d');
     return usingSpread
 }
 
-
+//This function handles dropping dice. It generates and resorts an array while slicing away the desired amount of sliced die from the bottom
 function dropOne(size,quantity,drop){
     let dice =[]
-    console.log(flag)
-    if (flag === true){
-        for (let i=0; i<quantity; i++){
-            let die = Math.ceil(Math.random()*size)
-            dice.push(die)
-            if (die === size){
-                i--
-                console.log("Explode")
-            }
-        }
-        console.log(dice)
-    }
-        else {
+    
             for (let i=0; i<quantity; i++){
                 let die = Math.ceil(Math.random()*size)
                 dice.push(die)
-        }}
+        }
 
     console.log(dice)
     if (drop !== undefined){
@@ -113,28 +45,31 @@ function dropOne(size,quantity,drop){
     }
 }
 
-
-
-function maxLoop (size, quantity){
-    let things = []
-    if (flag == true){
-    for (let i=0; i<quantity; i++){
-        let thing = Math.ceil(Math.random()*size)
-        things.push(thing)
-        if (thing === size){
+//This function handles exploding dice. I don't know why the flag works here considering that it isn't a variable - but it sure does work 
+function explodingDice (size, quantity){
+    let explodingdicearray = []
+    for (let i=0;i<quantity;i++){
+        let explodingdice = Math.ceil(Math.random()*size)
+        if (explodingdice == size){
             i--
-            console.log("Explode")
+            console.log('EXPLODE')
         }
+        explodingdicearray.push(explodingdice)
     }
-    console.log(things)
-}
-    else {
-        for (let i=0; i<quantity; i++){
-            let thing = Math.ceil(Math.random()*size)
-            things.push(thing)
-    }
-    console.log(things)
-}
+    addArray(explodingdicearray);
+    document.getElementById("adice").value = explodingdicearray;
+    document.getElementById("total").value = total;
 }
 
-var flag = false 
+//This function handles the use condiotions of either exploding dice or drop dice. I don't have a solution for using both yet.
+function allRoll(size, quantity, drop){
+    if (explodingflag == "on"){
+        explodingDice(size,quantity)
+    }
+    else {
+        dropOne(size,quantity,drop)
+    }
+    explodingflag = "off"
+}
+
+explodingflag ="off"

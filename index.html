@@ -11,11 +11,10 @@
     <script src="./assets/script.js"> </script>
 
     <h1>Roll the Dice!</h1>
-    <h2 type ="text" id="flag" value="1">1</h2>
     <form action="#">
         roll: <input type="string" name ="roll" id="roll"><br>
     </form>
-    <button onclick="dropOne(deString(document.getElementById('roll').value)[1],deString(document.getElementById('roll').value)[0],deString(document.getElementById('roll').value)[2])">Roll!</button>
+    <button onclick="allRoll(deString(document.getElementById('roll').value)[1],deString(document.getElementById('roll').value)[0],deString(document.getElementById('roll').value)[2])">Roll Explode!</button>
     <br>
     <input type="text" id="adice" readonly="readonly"/>
     <input type="text" id="total" readonly="readonly"/>
@@ -23,3 +22,5 @@
 
 <footer></footer>
 </html>
+
+<!--<button onclick="dropOne(deString(document.getElementById('roll').value)[1],deString(document.getElementById('roll').value)[0],deString(document.getElementById('roll').value)[2])">Roll!</button>
