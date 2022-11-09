@@ -14,7 +14,8 @@
     <form action="#">
         roll: <input type="string" name ="roll" id="roll"><br>
     </form>
-    <button onclick="dropExplode(deString(document.getElementById('roll').value)[1],deString(document.getElementById('roll').value)[0],deString(document.getElementById('roll').value)[2])">Roll!</button>
+    <button onclick="spliceDice(document.getElementById('roll').value);dicePlug(parseInt(splicedDice[1]),parseInt(splicedDice[0]),parseInt(splicedDice[2]),parseInt(splicedDice[splicedDice.length-1]))">Roll!</button> 
+    <p>! = exploding, r = drop, +# to add to the total -- ex: 4d6r1!+5 = 4d6 drop one exploding plus 5</p>
     <br>
     <input type="text" id="adice" readonly="readonly"/>
     <input type="text" id="total" readonly="readonly"/>
