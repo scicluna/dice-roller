@@ -1,3 +1,11 @@
+//DOMS
+const resultsList = document.querySelector(".results")
+const rollInput = document.querySelector(".roll")
+const rollBtn = document.querySelector(".roller")
+
+
+
+
 //This function lets me total an array
 function addArray(array){
     total = 0
@@ -7,16 +15,18 @@ function addArray(array){
     return total
 }
 
+
 //declaring some globals
 plusFlag = "off"
 explodeFlag = "off"
 dropFlag = "off"
 minusFlag ="off"
 splicedDice =[]
+dicesort = []
 
 //splices the dice string into an array
 function spliceDice(string){
-    splicedDice = string.split(/[-+,r,d,!]/g)
+    splicedDice = string.split(/[-+,r,d,!]/)
     
     if (string.includes('+')){
         plusFlag = "on"
@@ -65,65 +75,44 @@ function dicePlug(size, quantity, drop, num){
 }
 
 if (dropFlag == "on"){
-    var diceSort = diceArray.sort((a,b) => b-a).slice(0,diceArray.length-drop)
-    addArray(diceSort)
+     diceSort = diceArray.sort((a,b) => b-a).slice(0,diceArray.length-drop)
+     addArray(diceSort)
+    }
+    else{
+     diceSort = diceArray.sort((a,b) => b-a)
+     addArray(diceSort)
+    }
+    console.log(total)
+    console.log(num)
+    if (plusFlag == "on"){
+        total = parseInt(total) + parseInt(num)
     }
     
-    else{
-    var diceSort = diceArray.sort((a,b) => b-a)
-    addArray(diceSort)
-
+    if (minusFlag == "on") {
+        total = parseInt(total) - parseInt(num)
     }
-console.log(total)
-console.log(splicedDice)
-if (plusFlag == "on"){
-    total = parseInt(total) + parseInt(num)
-}
+    console.log(total)
 
-if (minusFlag == "on") {
-    total = parseInt(total) - parseInt(num)
-}
-console.log(total)
 console.log("plus",plusFlag)
 console.log("minus",minusFlag)
-document.getElementById("adice").value = diceArray;
-document.getElementById("total").value = total;
+console.log("drop",dropFlag)
 plusFlag = "off"
 minusFlag ="off"
 explodeFlag = "off"
 dropFlag = "off"
+
+return diceSort
 }
 
-
-const liveDice = () => {
-    let splicedAndDiced = [];
-
-    //Splice the String
-    const spliceAndDice = (string) => {
-        {
-            splicedAndDiced = string.split(/[-+,r,d,!]/g)
-            
-            if (string.includes('+')){
-                plusFlag = "on"
-            }
-        
-            if (string.includes('-')){
-                minusFlag = "on"
-            }
-        
-            if (string.includes('!')){
-                explodeFlag = "on"
-            }
-        
-            if (string.includes('r')){
-                dropFlag = "on"
-            }
-            return splicedAndDiced
-        }
-    };
-    //Declare Doms//
-    const diceString = document.getElementById('roll')
-    const diceButton = document.getElementById('')
-
-    
-}
+rollBtn.addEventListener('click', function(){
+    //init function
+    spliceDice(rollInput.value);
+    dicePlug(splicedDice[1],splicedDice[0],splicedDice[2], splicedDice[splicedDice.length-1]);
+    //Create an Li
+    const newLi = document.createElement('LI');
+    //liContent must equal the content I want to display
+    const liContent = document.createTextNode(diceSort + '     ' + total)
+    newLi.appendChild(liContent);
+    //Attach the Li to the user list
+    resultsList.appendChild(newLi);
+});
