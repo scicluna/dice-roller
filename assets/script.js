@@ -11,14 +11,19 @@ function addArray(array){
 plusFlag = "off"
 explodeFlag = "off"
 dropFlag = "off"
+minusFlag ="off"
 splicedDice =[]
 
 //splices the dice string into an array
 function spliceDice(string){
-    splicedDice = string.split(/[d,!,+,r]/)
+    splicedDice = string.split(/[-+,r,d,!]/g)
     
     if (string.includes('+')){
         plusFlag = "on"
+    }
+
+    if (string.includes('-')){
+        minusFlag = "on"
     }
 
     if (string.includes('!')){
@@ -33,7 +38,7 @@ function spliceDice(string){
 
 //main function - could probably do with some helper functions to replace the extraneous code//
 //does literally everything from handling exploding dice, to dropped dice, to adding numbers//
-function dicePlug(size, quantity, drop, plus){
+function dicePlug(size, quantity, drop, num){
     let diceArray =[]
 
     if (explodeFlag == "on") {
@@ -69,13 +74,56 @@ if (dropFlag == "on"){
     addArray(diceSort)
 
     }
-
+console.log(total)
+console.log(splicedDice)
 if (plusFlag == "on"){
-    total = total + parseInt(plus)
+    total = parseInt(total) + parseInt(num)
 }
+
+if (minusFlag == "on") {
+    total = parseInt(total) - parseInt(num)
+}
+console.log(total)
+console.log("plus",plusFlag)
+console.log("minus",minusFlag)
 document.getElementById("adice").value = diceArray;
 document.getElementById("total").value = total;
 plusFlag = "off"
+minusFlag ="off"
 explodeFlag = "off"
 dropFlag = "off"
+}
+
+
+const liveDice = () => {
+    let splicedAndDiced = [];
+
+    //Splice the String
+    const spliceAndDice = (string) => {
+        {
+            splicedAndDiced = string.split(/[-+,r,d,!]/g)
+            
+            if (string.includes('+')){
+                plusFlag = "on"
+            }
+        
+            if (string.includes('-')){
+                minusFlag = "on"
+            }
+        
+            if (string.includes('!')){
+                explodeFlag = "on"
+            }
+        
+            if (string.includes('r')){
+                dropFlag = "on"
+            }
+            return splicedAndDiced
+        }
+    };
+    //Declare Doms//
+    const diceString = document.getElementById('roll')
+    const diceButton = document.getElementById('')
+
+    
 }
