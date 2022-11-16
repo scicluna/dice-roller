@@ -11,13 +11,15 @@
 
 
     <h1>Roll the Dice!</h1>
-    <input class ="roll">
+    <section>
+    <input type="text" class ="roll" autocomplete="off" required>
     <button class = "roller" name ="roller" id="roller">Roll!</button> 
+    </section>
     <p>! = exploding, r = drop, +# to add to the total -- ex: 4d6r1!+5 = 4d6 drop one exploding plus 5</p>
     <br>
-<ul class="results">
-    
-</ul>
+<div class="result-container">
+    <ul class="results" id="results"></ul> <ul class="totals"></ul>
+</div>
     <script src="./assets/script.js"> </script>
 </body>
 

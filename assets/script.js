@@ -1,5 +1,6 @@
 //DOMS
 const resultsList = document.querySelector(".results")
+const totalsList = document.querySelector(".totals")
 const rollInput = document.querySelector(".roll")
 const rollBtn = document.querySelector(".roller")
 
@@ -93,9 +94,6 @@ if (dropFlag == "on"){
     }
     console.log(total)
 
-console.log("plus",plusFlag)
-console.log("minus",minusFlag)
-console.log("drop",dropFlag)
 plusFlag = "off"
 minusFlag ="off"
 explodeFlag = "off"
@@ -104,15 +102,41 @@ dropFlag = "off"
 return diceSort
 }
 
+//Run on button press
 rollBtn.addEventListener('click', function(){
     //init function
     spliceDice(rollInput.value);
     dicePlug(splicedDice[1],splicedDice[0],splicedDice[2], splicedDice[splicedDice.length-1]);
     //Create an Li
     const newLi = document.createElement('LI');
-    //liContent must equal the content I want to display
-    const liContent = document.createTextNode(diceSort + '     ' + total)
+    //liContent must equal the content I want to display 
+    const liContent = document.createTextNode(diceSort)
     newLi.appendChild(liContent);
-    //Attach the Li to the user list
+    //Attach the Li to the results list
     resultsList.appendChild(newLi);
+    //Repeat for Total 
+    const newLi2 = document.createElement("LI");
+    const liContent2 = document.createTextNode(total);
+    newLi2.appendChild(liContent2);
+    totalsList.appendChild(newLi2);
+});
+//Run on enter press
+rollInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+    //init function
+    spliceDice(rollInput.value);
+    dicePlug(splicedDice[1],splicedDice[0],splicedDice[2], splicedDice[splicedDice.length-1]);
+    //Create an Li
+    const newLi = document.createElement('LI');
+    //liContent must equal the content I want to display 
+    const liContent = document.createTextNode(diceSort)
+    newLi.appendChild(liContent);
+    //Attach the Li to the results list
+    resultsList.appendChild(newLi);
+    //Repeat for Total 
+    const newLi2 = document.createElement("LI");
+    const liContent2 = document.createTextNode(total);
+    newLi2.appendChild(liContent2);
+    totalsList.appendChild(newLi2);
+    }
 });
