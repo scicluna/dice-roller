@@ -4,8 +4,13 @@ const totalsList = document.querySelector(".totals")
 const rollInput = document.querySelector(".roll")
 const rollBtn = document.querySelector(".roller")
 
-
-
+//declaring some globals
+plusFlag = "off"
+explodeFlag = "off"
+dropFlag = "off"
+minusFlag ="off"
+splicedDice =[]
+dicesort = []
 
 //This function lets me total an array
 function addArray(array){
@@ -15,15 +20,6 @@ function addArray(array){
     }
     return total
 }
-
-
-//declaring some globals
-plusFlag = "off"
-explodeFlag = "off"
-dropFlag = "off"
-minusFlag ="off"
-splicedDice =[]
-dicesort = []
 
 //splices the dice string into an array
 function spliceDice(string){
@@ -57,7 +53,7 @@ function dicePlug(size, quantity, drop, num){
             let rollDice = Math.ceil(Math.random()*size)
     
             if (rollDice){
-                if (rollDice == size){
+                if (rollDice == size && size != 1){
                     i--
                     console.log("boom")
                 }
@@ -114,12 +110,26 @@ rollBtn.addEventListener('click', function(){
     newLi.appendChild(liContent);
     //Attach the Li to the results list
     resultsList.appendChild(newLi);
+    //cool animation
+    setTimeout(function(){
+        newLi.className = newLi.className +" show"; 
+    }, 10);
+
     //Repeat for Total 
     const newLi2 = document.createElement("LI");
     const liContent2 = document.createTextNode(total);
     newLi2.appendChild(liContent2);
     totalsList.appendChild(newLi2);
+    //cool animation
+    setTimeout(function(){
+        newLi2.className = newLi2.className +" show"; 
+    }, 10);
 });
+
+
+
+
+
 //Run on enter press
 rollInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
