@@ -143,10 +143,16 @@ rollInput.addEventListener('keypress', function (e) {
     newLi.appendChild(liContent);
     //Attach the Li to the results list
     resultsList.appendChild(newLi);
+    setTimeout(function(){
+        newLi.className = newLi.className +" show"; 
+    }, 10);
     //Repeat for Total 
     const newLi2 = document.createElement("LI");
     const liContent2 = document.createTextNode(total);
     newLi2.appendChild(liContent2);
     totalsList.appendChild(newLi2);
+    setTimeout(function(){
+        newLi2.className = newLi2.className +" show"; 
+    }, 10);
     }
 });
